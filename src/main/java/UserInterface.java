@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserInterface {
     public ArrayList<Quiz> quizzes;
@@ -12,8 +13,7 @@ public class UserInterface {
     }
 
     public void runQuiz(String name) {
-        Question[] myQuiz;
-        int score = 0;
+        Question[] myQuiz = new Question[0];
 
         for (Quiz quiz : this.quizzes) {
             if (quiz.quizName.equals(name)) {
@@ -24,13 +24,13 @@ public class UserInterface {
             }
         }
 
-        for (Quiz quiz : this.quizzes) {
-            System.out.println("Question: " + quiz.);
+        for (Question q : myQuiz) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Question: " + q.question);
+            System.out.println("Press enter to reveal the answer");
+            scan.nextLine();
+
+            System.out.println("Question");
         }
-
-
-
-
-
     }
 }
