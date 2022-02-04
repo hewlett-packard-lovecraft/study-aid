@@ -8,7 +8,7 @@ public class Quiz {
 
     public Quiz(String name, ArrayList<Question> _questionBank) {
         this.questionBank = _questionBank;
-        this.quizName = name
+        this.quizName = name;
     }
 
     public Question[] tenRandomQuestions() {
