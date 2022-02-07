@@ -11,7 +11,7 @@ public class UserInterface {
     public void newQuiz(String name) {
         String quizName = name;
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Question> questions = new ArrayList<Question>();
+        ArrayList<Question> questions = new ArrayList<>();
 
         if (quizName.equals("")) {
             System.out.println("What would you like your quiz to be named?");
@@ -30,13 +30,13 @@ public class UserInterface {
             String qDescriptionText;
             String qAnswer;
 
-            System.out.println("Enter the question: (" + i+1 + "/20)");
+            System.out.println("Enter the question: (" + (i+1) + "/20)");
             qName = scanner.nextLine();
 
-            System.out.println("Enter the answer: (" + i+1 + "/20)");
+            System.out.println("Enter the answer: (" + (i+1) + "/20)");
             qAnswer = scanner.nextLine();
 
-            System.out.println("Enter the answer's explanation, if any: (" + i+1 + "/20)");
+            System.out.println("Enter the answer's explanation, if any: (" + (i+1) + "/20)");
             qDescriptionText = scanner.nextLine();
 
             questions.add(new Question(qName, qAnswer, qDescriptionText));
@@ -80,10 +80,27 @@ public class UserInterface {
         System.out.println(
                 """
                 Usage:
-                run [quiz]      View elect 10 questions of an existing quiz
-                rm [quiz]       Remove an existing quiz
-                new [quiz name] Create a 20 question quiz with the interactive cli
+                run [quiz name]      View elect 10 questions of an existing quiz
+                rm [quiz name]       Remove an existing quiz
+                new [quiz name]      Create a 20 question quiz with the interactive cli
+                help                 Display this help and exit
+                exit                 Exit the program
                 """
         );
+    }
+
+    public void removeQuiz(String quizName) {
+        Quiz existingQuiz = null;
+        for (Quiz quiz : quizzes) {
+            if (quiz.quizName.equals(quizName)) {
+                existingQuiz = quiz;
+            }
+        }
+
+        if (existingQuiz == null) {
+            System.err.println("invalid quiz name");
+        } else {
+            System.out.println("Removed quiz " + quizName);
+        }
     }
 }

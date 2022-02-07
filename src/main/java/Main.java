@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        UserInterface ui = new UserInterface(new ArrayList<Quiz>());
+        UserInterface ui = new UserInterface(new ArrayList<>());
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         while (running) {
@@ -11,10 +11,10 @@ public class Main {
             ui.listQuizzes();
 
             String input = scanner.nextLine();
-            String command = input.split(" ")[0];
+            String[] command = input.split(" ");
 
             try {
-                switch (command) {
+                switch (command[0]) {
                     case "help":
                         ui.help();
                         break;
@@ -22,13 +22,13 @@ public class Main {
                         running = false;
                         break;
                     case "new":
-                        String optionNew = input.split(" ")[1];
-                        ui.newQuiz(optionNew);
+                        ui.newQuiz(command[1]);
                         break;
                     case "run":
-                        String optionRun = input.split(" ")[1];
-                        ui.runQuiz(optionRun);
+                        ui.runQuiz(command[1]);
                         break;
+                    case "rm":
+                        ui.removeQuiz(command[1]);
                     default:
                         System.err.println("invalid command");
                 }
